@@ -1,0 +1,10 @@
+# scalix-managed: true
+# This file is auto-generated/updated by Scalix Desktop based on your project structure.
+# Scalix Hosting triggers builds via Cloud Build API; this file is kept for consistency and manual runs.
+substitutions:
+  _IMAGE: 'gcr.io/$PROJECT_ID/app'
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', '${_IMAGE}', '.']
+images:
+  - '${_IMAGE}'
