@@ -16,7 +16,7 @@ export default function Index() {
         Welcome to Scalix AI Tools
       </Typography>
       <Grid container spacing={4} justifyContent="center" sx={{ maxWidth: 960, width: '100%' }}>
-        <Grid item xs={12} sm={6}> {/* Removed redundant 'item' prop from the comment, it's correctly placed on the Grid component */}
+        <Grid item xs={12} sm={6} key="image-generator-card"> {/* Removed the comment that was potentially misleading and ensured 'item' prop is correctly placed */}
           <Card sx={{ 
               height: '100%', 
               display: 'flex', 
@@ -48,7 +48,7 @@ export default function Index() {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} sm={6}> {/* Removed redundant 'item' prop from the comment, it's correctly placed on the Grid component */}
+        <Grid item xs={12} sm={6} key="another-tool-card"> {/* Removed the comment that was potentially misleading and ensured 'item' prop is correctly placed */}
           <Card sx={{ 
               height: '100%', 
               display: 'flex', 
