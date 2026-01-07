@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { TextField, Button, Card, CardHeader, CardContent, Typography } from "@mui/material"; // Import Typography and remove CardTitle
 
 const ImageGenerator: React.FC = () => {
   const [prompt, setPrompt] = useState<string>("");
@@ -31,17 +29,21 @@ const ImageGenerator: React.FC = () => {
     <div className="container mx-auto p-4">
       <Card>
         <CardHeader>
-          <CardTitle>AI Image Generator</CardTitle>
+          <Typography variant="h5" component="div"> {/* Use Typography for title */}
+            AI Image Generator
+          </Typography>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col space-y-4">
-            <Input
-              placeholder="Enter your image prompt (e.g., 'A cat wearing a hat')"
+            <TextField
+              label="Enter your image prompt"
+              variant="outlined"
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               disabled={loading}
+              fullWidth
             />
-            <Button onClick={generateImage} disabled={loading || !prompt}>
+            <Button variant="contained" onClick={generateImage} disabled={loading || !prompt}>
               {loading ? "Generating..." : "Generate Image"}
             </Button>
             {imageUrl && (
