@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { TextField, Button, Card, CardHeader, CardContent, Typography, Box, CircularProgress } from "@mui/material"; // Import Box and CircularProgress
+import { TextField, Button, Card, CardHeader, CardContent, Typography, Box, CircularProgress, Grid } from "@mui/material";
 
 const ImageGenerator: React.FC = () => {
   const [prompt, setPrompt] = useState<string>("");
@@ -32,29 +32,29 @@ const ImageGenerator: React.FC = () => {
         flexDirection: 'column', 
         alignItems: 'center', 
         justifyContent: 'center', 
-        minHeight: '80vh', // Use minHeight to ensure it takes up vertical space
-        padding: 4 // Add padding
+        minHeight: '80vh', 
+        padding: 4 
       }}>
       <Card sx={{ 
           width: '100%', 
-          maxWidth: 600, // Limit card width
-          boxShadow: 3, // Add a subtle shadow
-          borderRadius: 2 // Add rounded corners
+          maxWidth: 600, 
+          boxShadow: 3, 
+          borderRadius: 2 
         }}>
         <CardHeader sx={{ 
-            backgroundColor: 'primary.main', // Use theme's primary color for header background
-            color: 'primary.contrastText', // Ensure text is readable
-            paddingY: 2 // Adjust vertical padding
+            backgroundColor: 'primary.main', 
+            color: 'primary.contrastText', 
+            paddingY: 2 
           }}>
           <Typography variant="h5" component="div" sx={{ fontWeight: 'bold' }}>
             AI Image Generator
           </Typography>
         </CardHeader>
         <CardContent sx={{ 
-            padding: 3, // More padding inside the card content
+            padding: 3, 
             display: 'flex',
             flexDirection: 'column',
-            gap: 3 // Use gap for spacing between elements
+            gap: 3 
           }}>
           <TextField
             label="Enter your image prompt"
@@ -63,23 +63,23 @@ const ImageGenerator: React.FC = () => {
             onChange={(e) => setPrompt(e.target.value)}
             disabled={loading}
             fullWidth
-            sx={{ '& .MuiInputLabel-root': { color: 'text.secondary' } }} // Style label
+            sx={{ '& .MuiInputLabel-root': { color: 'text.secondary' } }} 
           />
           <Button 
             variant="contained" 
             onClick={generateImage} 
             disabled={loading || !prompt}
             sx={{ 
-              paddingY: 1.5, // Make button taller
+              paddingY: 1.5, 
               fontWeight: 'bold',
-              backgroundColor: 'secondary.main', // Use secondary color for action button
+              backgroundColor: 'secondary.main', 
               '&:hover': {
                 backgroundColor: 'secondary.dark',
               }
             }}
           >
             {loading ? (
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <CircularProgress size={24} sx={{ color: 'white', mr: 1 }} />
                 Generating...
               </Box>
@@ -87,11 +87,25 @@ const ImageGenerator: React.FC = () => {
               "Generate Image"
             )}
           </Button>
+          {loading && !imageUrl && (
+            <Box sx={{ 
+                mt: 4, 
+                textAlign: 'center', 
+                color: 'text.secondary',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 2
+              }}>
+              <CircularProgress size={40} />
+              <Typography variant="body1">Please wait, your image is being generated...</Typography>
+            </Box>
+          )}
           {imageUrl && (
             <Box sx={{ 
                 mt: 4, 
                 textAlign: 'center', 
-                border: '1px dashed #ccc', // Add a dashed border around the image area
+                border: '1px dashed #ccc', 
                 borderRadius: 1,
                 padding: 2
               }}>
@@ -116,20 +130,6 @@ const ImageGenerator: React.FC = () => {
                 borderRadius: 1
               }}>
               Enter a prompt and click "Generate Image" to see your creation.
-            </Box>
-          )}
-          {loading && !imageUrl && (
-            <Box sx={{ 
-                mt: 4, 
-                textAlign: 'center', 
-                color: 'text.secondary',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: 2
-              }}>
-              <CircularProgress size={40} />
-              <Typography variant="body1">Please wait, your image is being generated...</Typography>
             </Box>
           )}
         </CardContent>

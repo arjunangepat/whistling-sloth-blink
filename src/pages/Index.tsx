@@ -1,37 +1,84 @@
-import ImageGenerator from "@/components/ImageGenerator";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Box, Button, Card, CardContent, CardHeader, Typography, Grid } from "@mui/material";
 
 export default function Index() {
   return (
-    <div className="min-h-screen bg-gray-200 flex flex-col items-center justify-center p-4">
-      <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Welcome to Scalix AI Tools</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl">
-        <div className="bg-white p-6 rounded-lg shadow-md flex flex-col justify-center items-center transition-transform duration-300 hover:scale-105">
-          <h2 className="text-2xl font-semibold mb-4 text-center text-gray-700">AI Image Generator</h2>
-          <p className="text-gray-600 mb-6 text-center">
-            Create stunning images from text descriptions using our advanced AI.
-          </p>
-          <Link to="/image-generator">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">Go to Image Generator</Button>
-          </Link>
-        </div>
-        {/* Placeholder for another tool */}
-        <div className="bg-white p-6 rounded-lg shadow-md flex flex-col justify-center items-center transition-transform duration-300 hover:scale-105">
-          <h2 className="text-2xl font-semibold mb-4 text-center text-gray-700">Another Tool</h2>
-          <p className="text-gray-600 mb-6 text-center">
-            Description for another amazing tool coming soon.
-          </p>
-          <Button size="lg" disabled className="bg-gray-400 cursor-not-allowed">
-            Coming Soon
-          </Button>
-        </div>
-      </div>
-
-      {/* This part will be replaced by the actual ImageGenerator component when navigating */}
-      <div className="mt-16 w-full max-w-4xl">
-        {/* The ImageGenerator component will be rendered here when navigating to its route */}
-      </div>
-    </div>
+    <Box sx={{ 
+        minHeight: '100vh', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        padding: 3,
+        backgroundColor: theme => theme.palette.background.default // Use theme background color
+      }}>
+      <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', color: 'primary.main', textAlign: 'center' }}>
+        Welcome to Scalix AI Tools
+      </Typography>
+      <Grid container spacing={4} justifyContent="center" sx={{ maxWidth: 960, width: '100%' }}>
+        <Grid item xs={12} sm={6}> {/* Removed redundant 'item' prop from the comment, it's correctly placed on the Grid component */}
+          <Card sx={{ 
+              height: '100%', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              justifyContent: 'center', 
+              alignItems: 'center', 
+              p: 3, 
+              boxShadow: 3, 
+              borderRadius: 2,
+              transition: 'transform 0.2s ease-in-out',
+              '&:hover': {
+                transform: 'scale(1.03)',
+              }
+            }}>
+            <CardHeader sx={{ textAlign: 'center', pb: 2 }}>
+              <Typography variant="h5" component="div" sx={{ fontWeight: 'bold', color: 'text.primary' }}>
+                AI Image Generator
+              </Typography>
+            </CardHeader>
+            <CardContent sx={{ textAlign: 'center', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
+                Create stunning images from text descriptions using our advanced AI.
+              </Typography>
+              <Link to="/image-generator" style={{ textDecoration: 'none', width: '100%' }}>
+                <Button variant="contained" size="large" color="primary" sx={{ width: '100%', fontWeight: 'bold' }}>
+                  Go to Image Generator
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6}> {/* Removed redundant 'item' prop from the comment, it's correctly placed on the Grid component */}
+          <Card sx={{ 
+              height: '100%', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              justifyContent: 'center', 
+              alignItems: 'center', 
+              p: 3, 
+              boxShadow: 3, 
+              borderRadius: 2,
+              transition: 'transform 0.2s ease-in-out',
+              '&:hover': {
+                transform: 'scale(1.03)',
+              }
+            }}>
+            <CardHeader sx={{ textAlign: 'center', pb: 2 }}>
+              <Typography variant="h5" component="div" sx={{ fontWeight: 'bold', color: 'text.primary' }}>
+                Another Tool
+              </Typography>
+            </CardHeader>
+            <CardContent sx={{ textAlign: 'center', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
+                Description for another amazing tool coming soon.
+              </Typography>
+              <Button variant="contained" size="large" color="secondary" disabled sx={{ width: '100%', fontWeight: 'bold', cursor: 'not-allowed' }}>
+                Coming Soon
+              </Button>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
